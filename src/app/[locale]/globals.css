@@ -28,6 +28,6 @@ body {
 
 @media (max-width: 640px) {
   .mobile-image-shift {
-    object-position: -630px center; /* Moves image 20px to the left on mobile */
+    object-position: -600px center; /* Moves image 20px to the left on mobile */
   }
 }
