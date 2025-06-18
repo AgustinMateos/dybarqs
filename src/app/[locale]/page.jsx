@@ -13,21 +13,21 @@ export default async function Home({ params: { locale } }) {
           fill
           style={{ objectFit: "cover" }}
           priority
-          className="z-0"
+          className="z-0 mobile-image-shift" // Apply custom class
         />
       </div>
 
       {/* Segundo componente: Sección con imagen */}
       <div className="h-[780px] w-full flex">
         <div className="w-[50%] h-full flex items-center justify-center">
-          <div className="bg-amber-200 h-[540px] w-[480px] "></div>
+          <div className="bg-amber-200 h-[540px] w-[480px]"></div>
         </div>
         <div className="w-[50%] relative">
           <Image
             src="/diseno-de-espacios.svg"
             fill
             className="object-contain"
-            alt="diseño de espacios "
+            alt="diseño de espacios"
           />
         </div>
       </div>

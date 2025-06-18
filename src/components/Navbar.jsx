@@ -6,10 +6,14 @@ const Navbar = () => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [isResidentialOpen, setIsResidentialOpen] = useState(false);
   const [isCommercialOpen, setIsCommercialOpen] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isMobileProjectsOpen, setIsMobileProjectsOpen] = useState(false);
   const [hoveredImage, setHoveredImage] = useState('/proyectos-home.svg');
 
   const toggleDropdown = () => {
     setIsDropdownOpen(!isDropdownOpen);
+    setIsMobileMenuOpen(false);
+    setIsMobileProjectsOpen(false);
   };
 
   const closeDropdown = () => {
@@ -31,7 +35,16 @@ const Navbar = () => {
     setIsResidentialOpen(false);
   };
 
-  // Reset submenus and image when dropdown closes
+  const toggleMobileMenu = () => {
+    setIsMobileMenuOpen(!isMobileMenuOpen);
+    setIsDropdownOpen(false);
+    setIsMobileProjectsOpen(false);
+  };
+
+  const toggleMobileProjects = () => {
+    setIsMobileProjectsOpen(!isMobileProjectsOpen);
+  };
+
   useEffect(() => {
     if (!isDropdownOpen) {
       setIsResidentialOpen(false);
@@ -40,7 +53,6 @@ const Navbar = () => {
     }
   }, [isDropdownOpen]);
 
-  // Image mappings for submenu options
   const residentialImages = {
     'Primer Piso Flooring': '/primer-piso-flooring.svg',
     'Coffe Point Klimber': '/coffe-point-klimber.svg',
@@ -68,24 +80,9 @@ const Navbar = () => {
   return (
     <div className="fixed top-0 left-0 w-full h-[150px] z-20 bg-black/20 text-white flex justify-center">
       <div className="container h-[150px] py-4">
-        <div className="flex justify-between w-full text-center items-center">
-          <div className="h-[86px] w-[74px]">
-            <ul>
-              <li
-                className="uppercase cursor-pointer text-[var(--Dark-Gray)] font-['Roboto_Mono'] text-base not-italic font-medium leading-[110%] tracking-[1.6px]"
-                onClick={toggleDropdown}
-              >
-                proyectos
-              </li>
-              <li className="uppercase cursor-pointer">
-                nosotros
-              </li>
-              <li className="uppercase cursor-pointer">
-                contacto
-              </li>
-            </ul>
-          </div>
-          <div className="w-[470px] h-[74px]">
+        <div className="flex justify-between items-center  md:w-full">
+          {/* Logo (Left on Mobile) */}
+          <div className="w-[189px] ml-[20px] h-[74px] md:w-[470px] order-1 md:order-2 flex md:justify-center">
             <Image
               width={470}
               height={74}
@@ -94,29 +91,156 @@ const Navbar = () => {
               className="object-contain"
             />
           </div>
-          <div className="h-[86px] w-[74px] flex  justify-between">
+
+          {/* Hamburger Menu (Right on Mobile) */}
+          <div className="h-[86px] flex items-center w-[74px] order-2 md:order-1">
+            {/* Desktop Menu */}
+            <ul className="hidden md:flex flex-col space-y-2">
+              <li
+                className="uppercase cursor-pointer text-[var(--Dark-Gray)] font-['Roboto_Mono'] text-base not-italic font-medium leading-[110%] tracking-[1.6px]"
+                onClick={toggleDropdown}
+              >
+                proyectos
+              </li>
+              <li className="uppercase cursor-pointer">nosotros</li>
+              <li className="uppercase cursor-pointer">contacto</li>
+            </ul>
+            {/* Mobile Hamburger Icon */}
+            <button
+              className="md:hidden flex flex-col justify-center items-center w-8 h-8 space-y-1"
+              onClick={toggleMobileMenu}
+              aria-label="Toggle Mobile Menu"
+            >
+              <span className="w-6 h-1 bg-white rounded"></span>
+              <span className="w-6 h-1 bg-white rounded"></span>
+              <span className="w-6 h-1 bg-white rounded"></span>
+            </button>
+          </div>
+
+          {/* Language Options (Hidden on Mobile) */}
+          <div className="h-[86px] hidden md:block w-[74px]  justify-between order-3">
             <ul className="flex justify-between w-full">
-              <li className="uppercase cursor-pointer">
-                ENG
-              </li>
-              <li className="uppercase cursor-pointer">
-                ESP
-              </li>
+              <li className="uppercase cursor-pointer hidden md:block">ENG</li>
+              <li className="uppercase cursor-pointer hidden md:block">ESP</li>
             </ul>
           </div>
         </div>
       </div>
 
-      {/* Dropdown */}
+      {/* Mobile Menu */}
       <div
-        className={`fixed top-0 left-0 w-full h-screen bg-[#EAE4D6] text-black z-10 transform transition-transform duration-500 ease-in-out ${isDropdownOpen ? 'translate-y-0' : '-translate-y-full'
-          }`}
+        className={`fixed top-0 left-0 w-full h-screen bg-[#EAE4D6] text-black z-30 transform transition-transform duration-300 ease-in-out ${
+          isMobileMenuOpen ? 'translate-x-0' : '-translate-x-full'
+        } md:hidden`}
       >
-        <div
-          className="w-full h-full flex items-center relative"
-          onClick={(e) => e.stopPropagation()}
-        >
-          {/* Close Button */}
+        <div className="w-full h-full flex flex-col p-6">
+          <button
+            className="self-end w-8 h-8 flex items-center justify-center cursor-pointer"
+            onClick={toggleMobileMenu}
+            aria-label="Close Mobile Menu"
+          >
+            <span className="block w-6 h-1 bg-black rounded transform rotate-45"></span>
+            <span className="block w-6 h-1 bg-black rounded transform -rotate-45 absolute"></span>
+          </button>
+
+          <ul className="flex flex-col space-y-6 mt-10 text-xl">
+            <li className="uppercase cursor-pointer text-[var(--Dark-Gray)] font-['Roboto_Mono'] text-base font-medium leading-[110%] tracking-[1.6px]">
+              <span onClick={toggleMobileProjects}>proyectos</span>
+              {isMobileProjectsOpen && (
+                <ul className="ml-4 mt-4 space-y-4">
+                  <li>
+                    <span
+                      className="cursor-pointer text-[var(--Dark-Gray)] font-['Roboto_Mono'] text-base font-medium leading-[110%] tracking-[1.6px]"
+                      onClick={toggleCommercial}
+                    >
+                      comerciales
+                    </span>
+                    {isCommercialOpen && (
+                      <ul className="ml-4 mt-2 space-y-2">
+                        {Object.keys(commercialImages).map((option) => (
+                          <li
+                            key={option}
+                            className="cursor-pointer text-[var(--Dark-Gray)] font-['Roboto_Mono'] text-sm font-medium leading-[110%] tracking-[1.6px]"
+                            onClick={() => {
+                              setHoveredImage(commercialImages[option]);
+                              setIsDropdownOpen(true);
+                              setIsMobileMenuOpen(false);
+                              setIsMobileProjectsOpen(false);
+                            }}
+                          >
+                            {option}
+                          </li>
+                        ))}
+                      </ul>
+                    )}
+                  </li>
+                  <li>
+                    <span
+                      className="cursor-pointer text-[var(--Dark-Gray)] font-['Roboto_Mono'] text-base font-medium leading-[110%] tracking-[1.6px]"
+                      onClick={toggleResidential}
+                    >
+                      residenciales
+                    </span>
+                    {isResidentialOpen && (
+                      <ul className="ml-4 mt-2 space-y-2">
+                        {Object.keys(residentialImages).map((option) => (
+                          <li
+                            key={option}
+                            className="cursor-pointer text-[var(--Dark-Gray)] font-['Roboto_Mono'] text-sm font-medium leading-[110%] tracking-[1.6px]"
+                            onClick={() => {
+                              setHoveredImage(residentialImages[option]);
+                              setIsDropdownOpen(true);
+                              setIsMobileMenuOpen(false);
+                              setIsMobileProjectsOpen(false);
+                            }}
+                          >
+                            {option}
+                          </li>
+                        ))}
+                      </ul>
+                    )}
+                  </li>
+                </ul>
+              )}
+            </li>
+            <li
+              className="uppercase cursor-pointer text-[var(--Dark-Gray)] font-['Roboto_Mono'] text-base font-medium leading-[110%] tracking-[1.6px]"
+              onClick={() => setIsMobileMenuOpen(false)}
+            >
+              nosotros
+            </li>
+            <li
+              className="uppercase cursor-pointer text-[var(--Dark-Gray)] font-['Roboto_Mono'] text-base font-medium leading-[110%] tracking-[1.6px]"
+              onClick={() => setIsMobileMenuOpen(false)}
+            >
+              contacto
+            </li>
+            
+          </ul>
+          <div>
+          <div
+              className="uppercase cursor-pointer text-[var(--Dark-Gray)] font-['Roboto_Mono'] text-base font-medium leading-[110%] tracking-[1.6px]"
+              onClick={() => setIsMobileMenuOpen(false)}
+            >
+              ENG
+            </div>
+            <div
+              className="uppercase cursor-pointer text-[var(--Dark-Gray)] font-['Roboto_Mono'] text-base font-medium leading-[110%] tracking-[1.6px]"
+              onClick={() => setIsMobileMenuOpen(false)}
+            >
+              ESP
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Desktop Dropdown */}
+      <div
+        className={`fixed top-0 left-0 w-full h-screen bg-[#EAE4D6] text-black z-10 transform transition-transform duration-500 ease-in-out ${
+          isDropdownOpen ? 'translate-y-0' : '-translate-y-full'
+        }`}
+      >
+        <div className="w-full h-full flex items-center relative" onClick={(e) => e.stopPropagation()}>
           <button
             className="absolute top-4 right-4 z-20 w-8 h-8 flex items-center justify-center cursor-pointer"
             onClick={closeDropdown}
@@ -127,17 +251,20 @@ const Navbar = () => {
           </button>
 
           <div className="w-full h-full flex">
-            {/* Columna izquierda: Texto */}
             <div className="w-1/2 flex flex-col h-[100%] p-[38px] justify-between space-y-6 pl-10">
               <div className="flex flex-row">
                 <ul className="h-[86px] flex flex-col justify-between text-xl">
                   <li className="flex items-center space-x-6">
-                    <span className="cursor-pointer uppercase text-[var(--Dark-Gray)] font-['Roboto_Mono'] text-base not-italic font-medium leading-[110%] tracking-[1.6px]   underline decoration-[1px] decoration-[#222] text-[16px] underline-offset-2">
+                    <span className="cursor-pointer uppercase text-[var(--Dark-Gray)] font-['Roboto_Mono'] text-base not-italic font-medium leading-[110%] tracking-[1.6px] underline decoration-[1px] decoration-[#222] text-[16px] underline-offset-2">
                       PROYECTOS
                     </span>
                   </li>
-                  <li className="cursor-pointer uppercase text-[var(--Dark-Gray)] font-['Roboto_Mono'] text-base not-italic font-medium leading-[110%] tracking-[1.6px]  hover:underline hover:decoration-[1px] hover:decoration-[#222]">NOSOTROS</li>
-                  <li className="cursor-pointer uppercase text-[var(--Dark-Gray)] font-['Roboto_Mono'] text-base not-italic font-medium leading-[110%] tracking-[1.6px]  hover:underline hover:decoration-[1px] hover:decoration-[#222]">CONTACTO</li>
+                  <li className="cursor-pointer uppercase text-[var(--Dark-Gray)] font-['Roboto_Mono'] text-base not-italic font-medium leading-[110%] tracking-[1.6px] hover:underline hover:decoration-[1px] hover:decoration-[#222]">
+                    NOSOTROS
+                  </li>
+                  <li className="cursor-pointer uppercase text-[var(--Dark-Gray)] font-['Roboto_Mono'] text-base not-italic font-medium leading-[110%] tracking-[1.6px] hover:underline hover:decoration-[1px] hover:decoration-[#222]">
+                    CONTACTO
+                  </li>
                 </ul>
                 <div className="ml-10 relative">
                   <style jsx>{`
@@ -162,22 +289,23 @@ const Navbar = () => {
                   `}</style>
                   <ul className="flex space-x-4 justify-between flex-col h-[52px]">
                     <li
-                      className=" cursor-pointer  text-[var(--Dark-Gray)] font-['Roboto_Mono'] text-base not-italic font-medium leading-[110%] tracking-[1.6px]  hover:underline hover:decoration-[1px] hover:decoration-[#222]"
+                      className="cursor-pointer text-[var(--Dark-Gray)] font-['Roboto_Mono'] text-base not-italic font-medium leading-[110%] tracking-[1.6px] hover:underline hover:decoration-[1px] hover:decoration-[#222]"
                       onClick={toggleCommercial}
                       onMouseEnter={() => setHoveredImage('/comerciales.svg')}
                       onMouseLeave={() => setHoveredImage('/proyectos-home.svg')}
                     >
                       COMERCIALES
                       <ul
-                        className={`absolute left-full top-0 ml-4 space-y-2 text-lg w-[196px] ${isCommercialOpen && isDropdownOpen ? 'submenu submenu-active' : 'submenu'
-                          }`}
+                        className={`absolute left-full top-0 ml-4 space-y-2 text-lg w-[196px] ${
+                          isCommercialOpen && isDropdownOpen ? 'submenu submenu-active' : 'submenu'
+                        }`}
                       >
                         {isCommercialOpen && isDropdownOpen && (
                           <>
                             {Object.keys(commercialImages).map((option) => (
                               <li
                                 key={option}
-                                className="cursor-pointer  hover:underline hover:decoration-[1px] hover:decoration-[#222]"
+                                className="cursor-pointer hover:underline hover:decoration-[1px] hover:decoration-[#222]"
                                 onMouseEnter={() => setHoveredImage(commercialImages[option])}
                                 onMouseLeave={() => setHoveredImage('/comerciales.svg')}
                               >
@@ -189,22 +317,23 @@ const Navbar = () => {
                       </ul>
                     </li>
                     <li
-                      className="cursor-pointer text-[var(--Dark-Gray)] font-['Roboto_Mono'] text-base not-italic font-medium leading-[110%] tracking-[1.6px]  hover:underline hover:decoration-[1px] hover:decoration-[#222]"
+                      className="cursor-pointer text-[var(--Dark-Gray)] font-['Roboto_Mono'] text-base not-italic font-medium leading-[110%] tracking-[1.6px] hover:underline hover:decoration-[1px] hover:decoration-[#222]"
                       onClick={toggleResidential}
                       onMouseEnter={() => setHoveredImage('/residenciales.svg')}
                       onMouseLeave={() => setHoveredImage('/proyectos-home.svg')}
                     >
                       RESIDENCIALES
                       <ul
-                        className={`absolute left-full top-0 ml-4 space-y-2 text-lg w-auto ${isResidentialOpen && isDropdownOpen ? 'submenu submenu-active' : 'submenu'
-                          }`}
+                        className={`absolute left-full top-0 ml-4 space-y-2 text-lg w-auto ${
+                          isResidentialOpen && isDropdownOpen ? 'submenu submenu-active' : 'submenu'
+                        }`}
                       >
                         {isResidentialOpen && isDropdownOpen && (
                           <>
                             {Object.keys(residentialImages).map((option) => (
                               <li
                                 key={option}
-                                className="cursor-pointer w-[223px] hover:underline hover:decoration-[1px] hover:decoration-[#222]" // Agregar uppercase aquí
+                                className="cursor-pointer w-[223px] hover:underline hover:decoration-[1px] hover:decoration-[#222]"
                                 onMouseEnter={() => setHoveredImage(residentialImages[option])}
                                 onMouseLeave={() => setHoveredImage('/residenciales.svg')}
                               >
@@ -215,19 +344,14 @@ const Navbar = () => {
                         )}
                       </ul>
                     </li>
-
                   </ul>
                 </div>
               </div>
-              <div className='h-[152px] flex flex-col justify-between'>
-                <div className="h-[18px] w-full ">
-                  <ul className="flex w-[82px] justify-between ">
-                    <li className="uppercase cursor-pointer">
-                      ENG
-                    </li>
-                    <li className="uppercase cursor-pointer">
-                      ESP
-                    </li>
+              <div className="h-[152px] flex flex-col justify-between">
+                <div className="h-[18px] w-full">
+                  <ul className="flex w-[82px] justify-between">
+                    <li className="uppercase cursor-pointer">ENG</li>
+                    <li className="uppercase cursor-pointer">ESP</li>
                   </ul>
                 </div>
                 <div className="w-[470px] h-[74px]">
@@ -240,9 +364,7 @@ const Navbar = () => {
                   />
                 </div>
               </div>
-
             </div>
-            {/* Columna derecha: Imagen */}
             <div className="w-full h-full flex justify-end items-center">
               <div className="relative w-[100%] h-full">
                 <Image
