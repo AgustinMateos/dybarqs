@@ -21,7 +21,7 @@ export default async function Home({ params: { locale } }) {
       {/* Segundo componente: Sección con imagen */}
       <div className="h-auto md:h-[780px] w-full flex flex-col md:flex-row items-center">
         <div className="w-[100%] md:w-[50%] h-full flex items-center justify-center">
-          <div className="h-[700px] md:h-[600px] flex justify-around flex-col items-center w-[80%] md:w-[480px]">
+          <div className="h-[700px] md:h-[600px] flex justify-center md:justify-around flex-col items-center w-[80%] md:w-[480px]">
             <div className="h-[427px] w-[240px] relative">
               <Image src='/espacios.svg'
               alt="espacios"
@@ -29,9 +29,9 @@ export default async function Home({ params: { locale } }) {
 
               />
             </div>
-            <div className="flex h-[107px] flex-col justify-around">
+            <div className="flex h-[150px] md:h-[107] flex-col justify-end md:justify-end">
               <p>Diseñamos espacios que combinan funcionalidad, estética y calidad.</p>
-              <p >Quienes somos</p>
+              <div className="flex pt-[20px] "><p >Quienes somos</p><Image width={15} height={15} alt="img" src='/line.svg'/></div>
               </div>
              
           </div>
