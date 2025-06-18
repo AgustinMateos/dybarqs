@@ -82,7 +82,7 @@ const Navbar = () => {
       <div className="container h-[150px] py-4">
         <div className="flex justify-between items-center  md:w-full">
           {/* Logo (Left on Mobile) */}
-          <div className="w-[189px] ml-[20px] h-[74px] md:w-[470px] order-1 md:order-2 flex md:justify-center">
+          <div className="w-[189px] ml-[20px] h-[74px] md:w-[470px] order-1 md:order-2 flex md:justify-center items-center">
             <Image
               width={470}
               height={74}
