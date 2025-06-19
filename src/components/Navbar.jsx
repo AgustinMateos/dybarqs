@@ -220,13 +220,13 @@ const Navbar = () => {
         </div>
         <div className="mt-6">
           <div className='flex'><div
-            className="uppercase cursor-pointer text-[var(--Dark-Gray)] font-['Roboto_Mono'] text-base font-medium leading-[110%] tracking-[1.6px]"
+            className={`${inter.className} uppercase cursor-pointer text-[var(--Dark-Gray)]  text-base font-medium leading-[110%] tracking-[1.6px]`}
             onClick={() => setIsMobileMenuOpen(false)}
           >
             ENG
           </div>
             <div
-              className="uppercase cursor-pointer text-[var(--Dark-Gray)] font-['Roboto_Mono'] text-base font-medium leading-[110%] tracking-[1.6px]"
+              className={`${inter.className} uppercase cursor-pointer text-[var(--Dark-Gray)] text-base font-medium leading-[110%] tracking-[1.6px]`}
               onClick={() => setIsMobileMenuOpen(false)}
             >
               ESP
@@ -263,14 +263,14 @@ const Navbar = () => {
               <div className="flex flex-row">
                 <ul className="h-[86px] flex flex-col justify-between text-xl">
                   <li className="flex items-center space-x-6">
-                    <span className="cursor-pointer uppercase text-[var(--Dark-Gray)] font-['Roboto_Mono'] text-base not-italic font-medium leading-[110%] tracking-[1.6px] underline decoration-[1px] decoration-[#222] text-[16px] underline-offset-2">
+                    <span className={`${inter.className} cursor-pointer uppercase text-[var(--Dark-Gray)]  text-base not-italic font-medium leading-[110%] tracking-[1.6px] underline decoration-[1px] decoration-[#222] text-[16px] underline-offset-2`}>
                       PROYECTOS
                     </span>
                   </li>
-                  <li className="cursor-pointer uppercase text-[var(--Dark-Gray)] font-['Roboto_Mono'] text-base not-italic font-medium leading-[110%] tracking-[1.6px] hover:underline hover:decoration-[1px] hover:decoration-[#222]">
+                  <li className={`${inter.className} cursor-pointer uppercase text-[var(--Dark-Gray)] f text-base not-italic font-medium leading-[110%] tracking-[1.6px] hover:underline hover:decoration-[1px] hover:decoration-[#222]`}>
                     NOSOTROS
                   </li>
-                  <li className="cursor-pointer uppercase text-[var(--Dark-Gray)] font-['Roboto_Mono'] text-base not-italic font-medium leading-[110%] tracking-[1.6px] hover:underline hover:decoration-[1px] hover:decoration-[#222]">
+                  <li className={`${inter.className} cursor-pointer uppercase text-[var(--Dark-Gray)]  text-base not-italic font-medium leading-[110%] tracking-[1.6px] hover:underline hover:decoration-[1px] hover:decoration-[#222]`}>
                     CONTACTO
                   </li>
                 </ul>
@@ -297,14 +297,14 @@ const Navbar = () => {
                   `}</style>
                   <ul className="flex space-x-4 justify-between flex-col h-[52px]">
                     <li
-                      className="cursor-pointer text-[var(--Dark-Gray)] font-['Roboto_Mono'] text-base not-italic font-medium leading-[110%] tracking-[1.6px] hover:underline hover:decoration-[1px] hover:decoration-[#222]"
+                      className={`${inter.className} cursor-pointer text-[var(--Dark-Gray)]  text-base not-italic font-medium leading-[110%] tracking-[1.6px] hover:underline hover:decoration-[1px] hover:decoration-[#222]`}
                       onClick={toggleCommercial}
                       onMouseEnter={() => setHoveredImage('/comerciales.svg')}
                       onMouseLeave={() => setHoveredImage('/proyectos-home.svg')}
                     >
                       COMERCIALES
                       <ul
-                        className={`absolute left-full top-0 ml-4 space-y-2 text-lg w-[196px] ${isCommercialOpen && isDropdownOpen ? 'submenu submenu-active' : 'submenu'
+                        className={` absolute left-full top-0 ml-4 space-y-2 text-lg w-[196px] ${isCommercialOpen && isDropdownOpen ? 'submenu submenu-active' : 'submenu'
                           }`}
                       >
                         {isCommercialOpen && isDropdownOpen && (
@@ -312,7 +312,7 @@ const Navbar = () => {
                             {Object.keys(commercialImages).map((option) => (
                               <li
                                 key={option}
-                                className="cursor-pointer hover:underline hover:decoration-[1px] hover:decoration-[#222]"
+                                className ={`${inter.className} cursor-pointer hover:underline hover:decoration-[1px] hover:decoration-[#222]`}
                                 onMouseEnter={() => setHoveredImage(commercialImages[option])}
                                 onMouseLeave={() => setHoveredImage('/comerciales.svg')}
                               >
@@ -324,7 +324,7 @@ const Navbar = () => {
                       </ul>
                     </li>
                     <li
-                      className="cursor-pointer text-[var(--Dark-Gray)] font-['Roboto_Mono'] text-base not-italic font-medium leading-[110%] tracking-[1.6px] hover:underline hover:decoration-[1px] hover:decoration-[#222]"
+                      className= {`${inter.className} cursor-pointer text-[var(--Dark-Gray)]  text-base not-italic font-medium leading-[110%] tracking-[1.6px] hover:underline hover:decoration-[1px] hover:decoration-[#222]`}
                       onClick={toggleResidential}
                       onMouseEnter={() => setHoveredImage('/residenciales.svg')}
                       onMouseLeave={() => setHoveredImage('/proyectos-home.svg')}
@@ -339,7 +339,7 @@ const Navbar = () => {
                             {Object.keys(residentialImages).map((option) => (
                               <li
                                 key={option}
-                                className="cursor-pointer w-[223px] hover:underline hover:decoration-[1px] hover:decoration-[#222]"
+                                className={`${inter.className} cursor-pointer w-[223px] hover:underline hover:decoration-[1px] hover:decoration-[#222]`}
                                 onMouseEnter={() => setHoveredImage(residentialImages[option])}
                                 onMouseLeave={() => setHoveredImage('/residenciales.svg')}
                               >
@@ -356,8 +356,8 @@ const Navbar = () => {
               <div className="h-[152px] flex flex-col justify-between">
                 <div className="h-[18px] w-full">
                   <ul className="flex w-[82px] justify-between">
-                    <li className="uppercase cursor-pointer">ENG</li>
-                    <li className="uppercase cursor-pointer">ESP</li>
+                    <li className= {`${inter.className} uppercase cursor-pointer`}>ENG</li>
+                    <li className={`${inter.className} uppercase cursor-pointer`}>ESP</li>
                   </ul>
                 </div>
                 <div className="w-[470px] h-[74px]">

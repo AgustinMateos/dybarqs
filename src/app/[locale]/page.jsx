@@ -1,7 +1,7 @@
 import Image from "next/image";
 import initTranslations from "../i18n";
 import Link from "next/link";
-
+import { inter } from "./ui/fonts";
 export default async function Home({ params: { locale } }) {
   const { t } = await initTranslations(locale, ["home", "common"]);
   return (
@@ -30,8 +30,8 @@ export default async function Home({ params: { locale } }) {
               />
             </div>
             <div className="flex h-[150px] md:h-[107] flex-col justify-end md:justify-end">
-              <p>Diseñamos espacios que combinan funcionalidad, estética y calidad.</p>
-              <div className="flex pt-[20px] "><p >Quienes somos</p><Image width={15} height={15} alt="img" src='/line.svg'/></div>
+              <p className={`${inter.className} `}>Diseñamos espacios que combinan funcionalidad, estética y calidad.</p>
+              <div className="flex pt-[20px] "><p className={`${inter.className} `} >QUIÉNES SOMOS</p><Image width={15} height={15} alt="img" src='/line.svg'/></div>
               </div>
              
           </div>
@@ -64,8 +64,8 @@ export default async function Home({ params: { locale } }) {
               />
             </div>
             <div className="flex h-[150px] md:h-[107] flex-col justify-end md:justify-end">
-              <p>Cada espacio que creamos es una interpretación de lo que nuestros clientes necesitan y aún no saben que desean. </p>
-              <div className="flex pt-[20px] "><p >TRABAJEMOS JUNTOS</p><Image width={15} height={15} alt="img" src='/line.svg'/></div>
+              <p className={`${inter.className} `}>Cada espacio que creamos es una interpretación de lo que nuestros clientes necesitan y aún no saben que desean. </p>
+              <div className="flex pt-[20px] "><p className={`${inter.className} `} >TRABAJEMOS JUNTOS</p><Image width={15} height={15} alt="img" src='/line.svg'/></div>
               </div>
              
           </div>
@@ -73,8 +73,8 @@ export default async function Home({ params: { locale } }) {
         
       </div>
       <div className="w-full h-[120px] flex flex-col  justify-center bg-[#A28D77]">
-        <p className="w-[90%] pl-[60px] pt-[20px]">«La arquitectura debe hablar de su tiempo y lugar, pero aspirar a la atemporalidad».</p>
-        <p className="w-[90%]  pl-[60px]">
+        <p className={`${inter.className} w-[90%] pl-[60px] pt-[20px]`}>«La arquitectura debe hablar de su tiempo y lugar, pero aspirar a la atemporalidad».</p>
+        <p className={`${inter.className} w-[90%]  pl-[60px]`}>
         — Frank Gehry  </p>
         </div>
     </div>
