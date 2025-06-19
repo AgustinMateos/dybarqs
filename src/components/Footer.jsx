@@ -16,10 +16,10 @@ const Footer = () => {
 
                 <div className='h-[17px] w-full hidden md:block'><p className='text-[#EAE4D6]'>© 2025 DYB Arqs. Todos los derechos reservados. </p></div>
             </div>
-            <div className='w-[310px] flex-col items-center md:items-start md:flex-row h-[186px] md:h-full flex justify-around text-[#EAE4D6]'>
-                <div><p>proyectos</p></div>
-                <div><p>nosotros</p></div>
-                <div><p>contactos</p></div>
+            <div className='w-[320px] flex-col items-center md:items-start md:flex-row h-[186px] md:h-full flex justify-around text-[#EAE4D6]'>
+                <div><p className='uppercase'>proyectos</p></div>
+                <div><p className='uppercase'>nosotros</p></div>
+                <div><p className='uppercase'>contactos</p></div>
             </div>
             <div className='w-full md:w-[112px] pt-[20px] pb-[10px] md:pt-[0px] md:pb-[0xp]   h-auto md:h-full flex justify-around '>
                 <div className='h-[24px] relative  w-[24px]'>
