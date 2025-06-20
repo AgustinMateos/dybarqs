@@ -26,7 +26,7 @@ export default async function Home({ params: { locale } }) {
               <Image src='/espacios.svg'
               alt="espacios"
               fill
-
+              
               />
             </div>
             <div className="flex h-[160px] md:h-[107] flex-col justify-end md:justify-end">

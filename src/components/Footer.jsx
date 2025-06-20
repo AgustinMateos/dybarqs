@@ -11,7 +11,7 @@ const Footer = () => {
                         width={470}
                         height={74}
                         alt="logo"
-                        src="/logo-dyb.svg"
+                        src="/logos/logo-dyb.svg"
                         className="object-contain"
                     /></div>
 
@@ -27,21 +27,21 @@ const Footer = () => {
                     <Image
                         fill
                         alt="logo"
-                        src="/insta.svg"
+                        src="/logos/insta.svg"
                         className="object-contain"
                     /></div>
                 <div className='h-[24px] relative w-[24px]'>
                     <Image
                         fill
                         alt="logo"
-                        src="/linkedin.svg"
+                        src="/logos/linkedin.svg"
                         className="object-contain"
                     /></div>
                 <div className='h-[24px] relative  w-[24px]'>
                     <Image
                         fill
                         alt="logo"
-                        src="/you-tube.svg"
+                        src="/logos/you-tube.svg"
                         className="object-contain"
                     /></div>
             </div>

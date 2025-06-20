@@ -87,7 +87,7 @@ const Navbar = () => {
               width={0}
               height={74}
               alt="logo"
-              src="/logo-dyb.svg"
+              src="/logos/logo-dyb.svg"
               className="object-contain w-full h-auto"
             />
           </div>
@@ -235,7 +235,7 @@ const Navbar = () => {
             <Image
               fill
               alt="logo"
-              src="/dyb-logo.svg"
+              src="/logos/dyb-logo.svg"
               className="object-contain "
             />
           </div>
@@ -365,7 +365,7 @@ const Navbar = () => {
                     width={0}
                     height={74}
                     alt="logo"
-                    src="/dyb-logo.svg"
+                    src="/logos/dyb-logo.svg"
                     className="object-contain w-full h-auto"
                   />
                 </div>
